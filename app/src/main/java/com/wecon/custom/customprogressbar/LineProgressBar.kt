@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 
@@ -78,28 +79,52 @@ class LineProgressBar : View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        var curr = partialSize/2
-        while(curr < width) {
-            if(curr > width*(progress/100f)) {
-                beginBarPaint.alpha = 77
-                midBarPaint.alpha = 77
-                finalBarPaint.alpha = 77
-            } else {
-                beginBarPaint.alpha = 255
-                midBarPaint.alpha = 255
-                finalBarPaint.alpha = 255
+        var scale = context.resources.displayMetrics.density
+        var radius = 4.5f
+
+        var dotPaint = Paint()
+
+        var curr = partialSize*1.5f
+        var cx = 0f
+        var flag = true
+
+        while(curr < width-partialSize*1.5f) {
+            if(flag) {
+                if(curr > width*(progress/100f)) {
+                    cx = curr - partialSize - intervalSize
+                    if(curr < width*0.3) {
+                        dotPaint.color = beginBarPaint.color
+                    } else if(curr < width*0.7) {
+                        dotPaint.color = midBarPaint.color
+                    } else {
+                        dotPaint.color = finalBarPaint.color
+                    }
+
+                    beginBarPaint.alpha = 77
+                    midBarPaint.alpha = 77
+                    finalBarPaint.alpha = 77
+
+                    flag = false
+                } else {
+                    beginBarPaint.alpha = 255
+                    midBarPaint.alpha = 255
+                    finalBarPaint.alpha = 255
+                }
             }
 
+
             if(curr < width*0.3) {
-                canvas!!.drawLine(curr, 0f, curr, height.toFloat(), beginBarPaint)
+                canvas!!.drawLine(curr, 0f, curr, height.toFloat() - radius*scale*2, beginBarPaint)
             } else if(curr < width*0.7) {
-                canvas!!.drawLine(curr, 0f, curr, height.toFloat(), midBarPaint)
+                canvas!!.drawLine(curr, 0f, curr, height.toFloat() - radius*scale*2, midBarPaint)
             } else {
-                canvas!!.drawLine(curr, 0f, curr, height.toFloat(), finalBarPaint)
+                canvas!!.drawLine(curr, 0f, curr, height.toFloat() - radius*scale*2, finalBarPaint)
             }
 
             curr += partialSize + intervalSize;
         }
+
+        canvas!!.drawCircle(cx, height.toFloat() - radius*scale - scale, radius*scale, dotPaint)
 
     }
 
