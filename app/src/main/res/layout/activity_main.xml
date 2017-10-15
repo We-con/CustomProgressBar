@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wecon.custom.customprogressbar.MainActivity">
+
+    <com.wecon.custom.customprogressbar.LineProgressBar xmlns:cp="http://schemas.android.com/apk/res/com.wecon.custom.customprogressbar"
+        android:layout_width="248dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        cp:progress="20"
+        cp:progress_color_begin="@color/progressBarBegin"
+        cp:progress_color_final="@color/progressBarFinal"
+        cp:progress_color_mid="@color/progressBarMid"
+        cp:progress_interval="2dp"
+        cp:progress_partial="3dp"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+</android.support.constraint.ConstraintLayout>

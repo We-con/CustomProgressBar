@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineProgress">
+        <attr name="progress" format="integer" />
+        <attr name="progress_color_begin" format="color" />
+        <attr name="progress_color_mid" format="color" />
+        <attr name="progress_color_final" format="color" />
+        <attr name="progress_interval" format="dimension" />
+        <attr name="progress_partial" format="dimension" />
+    </declare-styleable>
+</resources>
